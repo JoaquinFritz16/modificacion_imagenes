@@ -11,7 +11,7 @@ if imagen.endswith('.jpg') or imagen.endswith('.png') or imagen.endswith('.jpeg'
     angulo=input("Ingrese el grado (º) de rotacion: ")
     imagen_abierta=Image.open(imagen)
     imagen_rotada=imagen_abierta.rotate(int(angulo))
-    nueva_carpeta=r'\\institutodc01\d48125437\modificacion_imagenes\images_rotate'
+    nueva_carpeta='images_rotate'
     if not os.path.exists(nueva_carpeta):
         os.makedirs(nueva_carpeta)
     imagen_rotada.save(nueva_carpeta+r'\imagen_rotada.jpg')

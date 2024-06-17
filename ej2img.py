@@ -7,7 +7,7 @@ if imagen.endswith('.jpg') or imagen.endswith('.png') or imagen.endswith('.jpeg'
     
     imagen_abierta = Image.open(imagen)
     nuevo_nombre = 'copia_'+ os.path.basename(imagen)
-    nueva_carpeta=r'\\institutodc01\d48125437\modificacion_imagenes\images_copy'
+    nueva_carpeta='images_copy'
     ruta_nueva=os.path.join(nueva_carpeta, nuevo_nombre)
     if not os.path.exists(nueva_carpeta):
         os.makedirs(nueva_carpeta)
