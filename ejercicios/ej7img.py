@@ -1,8 +1,8 @@
 from PIL import Image
 import os
 
-image=input("Ingrese la ruta de la imagen (debe tener la extension png): ")
-if image.endswith('.png'):
+image=input("Ingrese la ruta de la imagen (debe tener la extension png o gif): ")
+if image.endswith('.png') or image.endswith('.gif'):
     img=Image.open(image).convert('RGB')
 
     width, height= img.size
@@ -28,6 +28,7 @@ if image.endswith('.png'):
     if not os.path.exists(nombre_carpeta):
         os.makedirs(nombre_carpeta)
     ruta_archivo=os.path.join(nombre_carpeta,nombre_archivo)
+    img.show()
     img.save(ruta_archivo)
     print(f"Imagen guardada en {nombre_carpeta}")
 else:

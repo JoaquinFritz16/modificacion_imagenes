@@ -28,9 +28,9 @@ def pixelate_image(img, pixel_size):
                             img_pixelated.putpixel((x+x2,y+y2), (r_avg, g_avg, b_avg))
     return img_pixelated
 
-image=input("Ingrese la ruta de la imagen (debe tener la extension '.png'): ")
+image=input("Ingrese la ruta de la imagen (debe tener la extension '.png' o '.gif'): ")
 pixel_size=int(input("Ingrese el tamaño de pixelado: "))
-if image.endswith('.png'):
+if image.endswith('.png') or image.endswith('.gif'):
     img = Image.open(image).convert('RGB')
     img_pixelated = pixelate_image(img, pixel_size)
 
@@ -39,6 +39,7 @@ if image.endswith('.png'):
     if not os.path.exists(nombre_carpeta):
         os.makedirs(nombre_carpeta)
     ruta_archivo=os.path.join(nombre_carpeta,nombre_archivo)
+    img_pixelated.show()
     img_pixelated.save(ruta_archivo)
     print(f"Imagen guardada en {nombre_carpeta}")
 else:

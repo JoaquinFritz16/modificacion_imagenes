@@ -12,7 +12,9 @@ while True:
         if os.path.isfile(imagen):
             print("La imagen es un archivo local")
             imagen_abierta = Image.open(imagen)
-            ancho_imagen, alto_imagen=imagen_abierta.size    
+            ancho_imagen, alto_imagen=imagen_abierta.size 
+            print(f"Recuerda que el ancho de la imagen es: {ancho_imagen}")
+            print(f"Recuerda que el alto de la imagen es: {alto_imagen}")
             while True:
                 coordenada_inicial_x = int(input("Ingrese la coordenada inicial en x: "))
                 coordenada_inicial_y = int(input("Ingrese la coordenada inicial en y: "))

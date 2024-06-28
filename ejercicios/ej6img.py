@@ -10,7 +10,7 @@ if os.path.isdir(carpeta_collage):
 
         ruta_completa=os.path.join(carpeta_collage,archivo)
 
-        if os.path.isfile(ruta_completa) and archivo.lower().endswith(('.png','.jpg','.jpeg')):
+        if os.path.isfile(ruta_completa) and archivo.lower().endswith(('.png','.jpg','.jpeg','.gif')):
             lista.append(ruta_completa)
 else:
     print("la carpeta no existe o no se puede acceder a ella")
@@ -19,7 +19,7 @@ if len(lista) >= 9:
     tamaño_imagen=resolucion_collage//3
     x=0
     y=0
-    for i in range(9):
+    for i in range(len(lista)):
         imagen=Image.open(lista[i])
         imagen=imagen.resize((tamaño_imagen,tamaño_imagen))
         collage.paste(imagen,(x,y))

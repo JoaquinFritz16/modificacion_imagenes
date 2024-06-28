@@ -1,37 +1,6 @@
 from PIL import Image
 from PIL import Image
 import os
-def gaussiano(img):
-    img = img.copy()  
-    pixels = img.load()  
-
-    width, height = img.size
-
-    for y in range(1, height - 1):
-        for x in range(1, width - 1):
-            totalPixels = 0
-            totalR = 0
-            totalG = 0
-            totalB = 0
-
-            for j in range(-1, 2):
-                for i in range(-1, 2):
-                    auxX = x + i
-                    auxY = y + j
-
-                    r, g, b = pixels[auxX, auxY]
-                    totalR += r
-                    totalG += g
-                    totalB += b
-                    totalPixels += 1
-
-            totalR //= totalPixels
-            totalG //= totalPixels
-            totalB //= totalPixels
-
-            pixels[x, y] = (totalR, totalG, totalB)
-
-    return img
 
 def gaussian(img, mascara):
     img = img.convert('RGB')
@@ -39,20 +8,20 @@ def gaussian(img, mascara):
     width, height = img.size
 
     kernel_size = len(mascara)
-    offset = kernel_size // 2
+    margen = kernel_size // 2
     
 
-    for y in range(offset, height - offset):
-        for x in range(offset, width - offset):
-            totalR = 0
-            totalG = 0
-            totalB = 0
-            for i in range(-offset, offset + 1):
-                for j in range(-offset, offset + 1):
+    for y in range(margen, height - margen):
+        for x in range(margen, width - margen):
+            totalR =0
+            totalG =0
+            totalB =0
+            for i in range(-margen, margen + 1):
+                for j in range(-margen, margen + 1):
                     auxX = x + i
                     auxY = y + j
                     r, g, b = pixels[auxX, auxY]
-                    weight = mascara[j + offset][i + offset]
+                    weight = mascara[j + margen][i + margen]
 
                     totalR += r * weight
                     totalG += g * weight
@@ -63,9 +32,9 @@ def gaussian(img, mascara):
     return img
 
 image = input("Ingrese la ruta de la imagen: ")
-if image.endswith('.png') or image.endswith('.jpg'):
+if image.endswith('.png') or image.endswith('.jpg') or image.endswith('.gif'):
     
-    mascara_7x7_sigma_2 = [
+    mascara_sigma2 = [
     [0.000036, 0.000363, 0.001446, 0.002290, 0.001446, 0.000363, 0.000036],
     [0.000363, 0.003676, 0.014652, 0.023228, 0.014652, 0.003676, 0.000363],
     [0.001446, 0.014652, 0.058488, 0.092651, 0.058488, 0.014652, 0.001446],
@@ -81,7 +50,7 @@ if image.endswith('.png') or image.endswith('.jpg'):
         
         img = Image.open(image)
 
-        img_gaussiano = gaussian(img, mascara_7x7_sigma_2)
+        img_gaussiano = gaussian(img, mascara_sigma2)
 
         img.show()
         img_gaussiano.show()
